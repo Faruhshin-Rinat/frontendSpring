@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    padding: 8px;
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+}
+
+form {
+    padding: 8px 8px 12px 8px;
+}
+
+.controls-top {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.group {
+    min-width: 180px;
+}
+
+.group-title {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.buttons-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+input[type="number"] {
+    width: 110px;
+    margin-bottom: 6px;
+}
+
+input[type="button"] {
+    cursor: pointer;
+}
+
+svg {
+    display: block;
+    width: 600px;
+    height: 600px;
+    border: 1px solid gray;
+}
