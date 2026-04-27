@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Топ киберспортсменов по CS - Рейтинг</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="JavaScript/data.js"></script>
+    <script src="JavaScript/table.js"></script>
+    <script src="JavaScript/filter.js"></script>
+    <script src="JavaScript/sort.js"></script>
+    <script src="JavaScript/chart.js"></script>
+    <script src="JavaScript/main.js"></script>
+</head>
+<body>
+    <h1 align="center">Топ киберспортсменов по CS</h1>
+    <hr width="100%" size="3" color="gray">
+
+    <ul>
+        <li><a href="index.html"><font size="4">Главная страница</font></a></li>
+        <li><a href="rating.html"><font size="4">Список лучших киберспортсменов</font></a></li>
+    </ul>
+    <hr width="100%" size="3" color="gray">
+
+    <h2 align="center">Рейтинг киберспортсменов</h2>
+
+    <details open>
+        <summary><b>График</b></summary>
+        <form id="graphForm">
+            <b>Значение по оси OX</b><br>
+            <label><input type="radio" name="ox" value="Команда" checked> Команда</label><br>
+            <label><input type="radio" name="ox" value="Страна"> Страна</label><br><br>
+
+            <b>Значение по оси OY</b><br>
+            <div id="oy-group">
+                <label><input type="checkbox" name="oy" value="max" checked> Максимальный рейтинг</label><br>
+                <label><input type="checkbox" name="oy" value="min"> Минимальный рейтинг</label><br>
+            </div>
+            <div id="oy-error" style="color: red; min-height: 18px;"></div>
+
+            <label for="chartType"><b>Тип диаграммы</b></label><br>
+            <select id="chartType" name="chartType">
+                <option value="scatter">Точечная диаграмма</option>
+                <option value="line">График</option>
+                <option value="bar">Столбчатая диаграмма</option>
+            </select><br><br>
+
+            <input type="submit" value="Построить">
+        </form>
+        <br>
+        <svg id="chart" width="1000" height="500"></svg>
+    </details>
+
+    <details open>
+        <summary><b>Фильтр</b></summary>
+        <form id="filterForm">
+            <label for="name">Никнейм:</label><br>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="role">Роль:</label><br>
+            <select id="role" name="role">
+                <option value="">Все</option>
+            </select><br><br>
+
+            <label for="country">Страна:</label><br>
+            <select id="country" name="country">
+                <option value="">Все</option>
+            </select><br><br>
+
+            <label for="team">Команда:</label><br>
+            <input type="text" id="team" name="team"><br><br>
+
+            Количество MVP:<br>
+            <label>от <input type="number" id="mvp_from" name="mvp_from"></label>
+            <label>до <input type="number" id="mvp_to" name="mvp_to"></label><br><br>
+
+            Rating 3.0:<br>
+            <label>от <input type="number" id="rating_from" name="rating_from" step="0.01"></label>
+            <label>до <input type="number" id="rating_to" name="rating_to" step="0.01"></label><br><br>
+
+            <input type="button" id="findBtn" value="Найти">
+            <input type="button" id="clearFilterBtn" value="Очистить фильтр">
+        </form>
+    </details>
+
+    <details open>
+        <summary><b>Сортировка</b></summary>
+        <form id="sortForm">
+            <label for="sort1">Первый уровень:</label><br>
+            <select id="sort1" name="sort1"></select>
+            <label><input type="checkbox" id="sort1Desc" name="desc1"> по убыванию?</label><br><br>
+
+            <label for="sort2">Второй уровень:</label><br>
+            <select id="sort2" name="sort2"></select>
+            <label><input type="checkbox" id="sort2Desc" name="desc2"> по убыванию?</label><br><br>
+
+            <label for="sort3">Третий уровень:</label><br>
+            <select id="sort3" name="sort3"></select>
+            <label><input type="checkbox" id="sort3Desc" name="desc3"> по убыванию?</label><br><br>
+
+            <input type="button" id="sortBtn" value="Сортировать">
+            <input type="button" id="resetSortBtn" value="Сбросить сортировку">
+        </form>
+    </details>
+
+    <hr width="100%" size="3" color="gray">
+
+    <table id="playersTable" border="1" cellpadding="8" cellspacing="0" width="100%"></table>
+
+    <hr width="100%" size="3" color="gray">
+
+    <p align="center">
+        Группа: Б9123-09.03.04(3)<br>
+        Разработчик: Фарухшин Ринат Рустамович
+    </p>
+</body>
+</html>
