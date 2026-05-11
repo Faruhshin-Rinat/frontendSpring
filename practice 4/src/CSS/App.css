@@ -1,0 +1,26 @@
+.App {
+  padding: 0 10px;
+}
+
+.players-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.players-table td,
+.players-table th {
+  border: 1px solid #000;
+  padding: 8px;
+}
+
+.show { display: table-row; }
+.hide { display: none; }
+
+.page-num {
+  margin-right: 0.4rem;
+  cursor: pointer;
+}
+
+.page-num.active {
+  font-weight: 700;
+}
