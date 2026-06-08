@@ -1,0 +1,43 @@
+import { DndContext, closestCenter } from '@dnd-kit/core';
+import { SortableContext, verticalListSortingStrategy, arrayMove } from '@dnd-kit/sortable';
+import { useDispatch, useSelector } from 'react-redux';
+import List from '@mui/material/List';
+import { SortableItem } from '../components/SortableItem';
+import { setDraggedItems } from './quizSlice';
+import { RootState } from '../../store';
+
+interface ComponentProps {
+  index: number;
+  answers: string[];
+}
+
+// Перетаскиваемый список (для сопоставления и сортировки)
+function SortableList({ index, answers }: ComponentProps) {
+  const dispatch = useDispatch();
+  const arr = useSelector((state: RootState) => state.lists.lists[index]); // порядок из хранилища
+  const draggedItems = arr || answers; // пока в хранилище пусто - показываем переданные answers
+
+  const handleDragEnd = (event: any) => {
+    const { active, over } = event;
+    if (over && active.id !== over.id) {                 // позиция изменилась
+      const oldIndex = draggedItems.indexOf(active.id);
+      const newIndex = draggedItems.indexOf(over.id);
+      const newList = arrayMove(draggedItems, oldIndex, newIndex); // новый порядок
+      dispatch(setDraggedItems({ index, items: newList }));        // сохраняем в хранилище
+    }
+  };
+
+  return (
+    <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+      <SortableContext items={draggedItems} strategy={verticalListSortingStrategy}>
+        <List>
+          {draggedItems.map((item) => (
+            <SortableItem key={item} item={item} />
+          ))}
+        </List>
+      </SortableContext>
+    </DndContext>
+  );
+}
+
+export default SortableList;
